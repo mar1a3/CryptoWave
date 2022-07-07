@@ -1,0 +1,44 @@
+.coin-list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px 10px 0px;
+    border-bottom: 1px solid #ddd;
+    color: rgb(255, 255, 255);
+}
+.coin-list-image{
+    display: flex;
+    justify-content: space-between;
+}
+.coin-list-image img{
+    display: block;
+    width: clamp(70px, 8vw, 80px);
+}
+
+.coin-list-name{
+    align-self: center;
+    width: 100px;
+    font-size: clamp(5px, 4vw, 25px);
+    margin-left: 20px;
+    font-weight: 500;
+    word-break: break-all;
+}
+.up{
+    color: green;
+}
+.down{
+    color: red;
+}
+.coin-list-prices{
+    width: clamp(50px, 10vw, 130px);
+    display: flex;
+    flex-direction: column;
+    color:white;
+}
+.coin-list-btc{
+    font-size: clamp(5px, 4vw, 20px);
+}
+.coin-list-usd{
+    font-size: clamp(5px, 10vw, 15px);
+    color: rgb(166, 170, 174);
+}

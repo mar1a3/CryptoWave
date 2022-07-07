@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+:root {
+  --header-text: white;
+  --gradient-nav: linear-gradient(45deg, #b7c6e8 15%, #33cbe6 50%, #e9eff9);
+  --gradient-text: linear-gradient(45deg, #497dec 15%, #33cbe6 50%, #e9eff9);
+  --background: black;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  /* font-family: $big-font; */
+  background-color: var(--background);
+}
+body::-webkit-scrollbar {
+  width: 12px;            
+}
+body::-webkit-scrollbar-track {
+  background: rgb(0, 0, 0);        
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #467df5;    
+  border-radius: 20px;       
+}
+body.no-scroll {
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+

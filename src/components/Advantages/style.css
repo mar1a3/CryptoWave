@@ -1,0 +1,139 @@
+.advantages-container {
+    width: 100%;
+    padding: 20px 20px;
+}
+.advantages-container h1 {
+    text-align: left;
+    margin-bottom: 50px;
+    font-size: clamp(30px, 10vw, 60px);
+    font-weight: 400;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 0.6fr 1fr;
+    gap: 20px;
+    color: var(--header-text);
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+}
+.wrapper-box {
+    overflow: hidden;
+    border-radius: 30px;
+}
+.big-box {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 60px;
+    background-image: url('../images/hand-with-golden-litecoin.jpg');
+    background-position: 30%;
+    background-size: cover;
+    height: clamp(10px, 70vw, 600px);
+    border-radius: 30px;
+    transition: transform 0.5s;
+}
+.big-box:hover {
+    transform: scale(1.15);
+}
+.big-box-text {
+    width: 400px;
+    padding: 30px 10px;
+    backdrop-filter: blur(5px);
+}
+.p-1 {
+    font-size: clamp(20px, 8vw, 35px);
+}
+.big-box b {
+    font-size: clamp(20px, 9vw, 95px);
+    font-weight: 400;
+}
+.p-2 {
+    font-size: clamp(20px, 9vw, 35px);
+    font-weight: 500;
+}
+.p-3 {
+    font-size: clamp(20px, 8vw, 20px);
+}
+
+.right-column {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.small-box {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    height: 100%;
+    background-size: cover;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    transition: transform 0.5s;
+}
+.small-box:hover {
+    transform: scale(1.15);
+}
+.one {
+    background-image: url('../images/digital-exchange.jpg');
+}
+.two {
+    background-image: url('../images/neon\ 4.jpg');
+}
+.three {
+    background-position: 10% 70%;
+    background-image: url('../images/arrangement-with-cryptocurrency.jpg');
+    color: black;
+}
+.four {
+    background-image: url('../images/neon\ 1.jpg');
+}
+
+/* Slider */
+.slider-container {
+    display: none;
+}
+.card-item {
+    height: 300px;
+    background-size: cover;
+    border-radius: 30px;
+}
+.main {
+    background-image: url('../images/hand-with-golden-litecoin.jpg');
+}
+.text {
+    width: 200px;
+    padding: 30px 20px;
+    color: white;
+}
+
+@media (min-width: 760px) and (max-width: 1055px) {
+    .grid-container {
+        display: none;
+    }
+    .slider-container {
+        display: block;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .grid-container {
+        display: none;
+    }
+    .slider-container {
+        display: block;
+    }
+}
+
+@media (max-width: 767px) {
+    .grid-container {
+        display: none;
+    }
+    .slider-container {
+        display: block;
+    }
+}

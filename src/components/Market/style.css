@@ -1,0 +1,55 @@
+.header-search{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 0px 20px 0px;
+    text-align: center;
+    background: #000000;
+}
+.header-search-width h2{
+    margin-bottom: 20px;
+    font-size: clamp(10px, 6vw, 28px);
+    font-weight: 500;
+    color:rgb(255, 255, 255);
+}
+.header-search-width input{
+    padding: 0 24px;
+    width: 50%;
+    font-size: clamp(10px, 6vw, 28px);
+    background: #000000;
+    color: white;
+    border: 1px solid #3498db;
+    border-radius: 8px;
+    line-height: clamp(30px, 6vw, 45px);
+}
+
+.home-cryptos{
+    margin: 0px clamp(10px, 15vw, 250px);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    height: 600px;
+    overflow-y: scroll;
+}
+.home-cryptos::-webkit-scrollbar {
+    width: 12px;            
+  }
+.home-cryptos::-webkit-scrollbar-track {
+    background: rgb(0, 0, 0);        
+  }
+.home-cryptos::-webkit-scrollbar-thumb {
+    background-color: #467df5;    
+    border-radius: 20px;       
+  }
+.home-cryptos-title{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0px;
+    font-size: clamp(15px, 5vw, 30px);
+    font-weight: 400;
+    color: white;
+}
+.home-cryptos-title p{
+    margin-right: 10px;
+}
+

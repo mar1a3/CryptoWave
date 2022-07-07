@@ -1,0 +1,74 @@
+.subsctiption-container{
+    margin: 50px 20px;
+    display: flex;
+    justify-content: space-between;
+    height: 300px;
+}
+.subsctiption-text{
+    padding: 20px 20px;
+}
+.subsctiption-text h2{
+    margin-top: 20px;
+    color: rgb(255, 255, 255);
+    font-size: clamp(30px, 10vw, 45px);
+    font-weight: 400;
+}
+.subsctiption-text p{
+    margin-top: 20px;
+    text-align: justify;
+    font-size: 20px;
+    color: rgb(174, 178, 182);
+}
+.subsctiption-form{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+.subsctiption-form input{
+    padding: 0 25px;
+    width: 50%;
+    font-size: 20px;
+    background: #000000;
+    color: white;
+    border: 1px solid #3498db;
+    border-radius: 8px;
+    line-height: clamp(30px, 6vw, 45px);
+}
+.subsctiption-form button{
+    margin-left: 20px;
+    width: 100px;
+    height: 45px;
+    background: #3498db;
+    border: 1px solid #3498db;
+    border-radius: 8px;
+    font-size: 20px;
+    color:white;
+    cursor: pointer;
+}
+.subsctiption-right{
+    width: 90%;
+    padding: 20px 20px;
+}
+
+@media (min-width: 760px) and (max-width: 1055px) {
+    .subsctiption-container{
+        margin: 20px 20px;
+        display: block;
+    }
+}
+
+@media (max-width: 767px) {
+    .subsctiption-container{
+        margin: 20px 20px;
+        display: block;
+    }
+    .subsctiption-form input{
+        height: 50px;
+    }
+    .subsctiption-form{
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+    }
+}
+
