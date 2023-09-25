@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+</head>
+<body>
+    <style>
+        body{
+            background-color: black;
+        }
+        .input{
+            margin-top: 100px;
+            margin-left: 300px;
+            padding: 5px 10px;
+            width: 400px;
+            height: 40px;
+            color:white;
+            font-size: 20px;
+            background-color: black;
+            border: 3px solid rgb(241, 133, 60);;
+            border-radius: 7px;
+        }
+        .unite{
+            margin-top: 50px;
+            margin-left: 250px;
+            width: 550px;
+            border: 2px solid #000000;
+            border-radius: 10px;
+        }
+        .table-F{
+            width: 550px;
+            height: 30px;
+        }
+        .table-F td{
+            text-align: center;
+            background-color: rgb(243, 80, 83);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .table-F td:hover {
+        transform: scale(1.2);
+        }
+        .numbers{
+            width: 550px;
+            height: 40px;
+        }
+        .numbers td{
+            text-align: center;
+            background-color: rgb(241, 133, 60);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .numbers td:hover {
+        transform: scale(1.2);
+        }
+        .first-line{
+            width: 550px;
+            height: 40px;
+        }
+        .first-line td{
+            font-size: 20px;
+            background-color: rgb(242, 219, 125);
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .first-line td:hover {
+        transform: scale(1.2);
+        }
+        .second-line{
+            width: 550px;
+            height: 40px;
+        }
+        .second-line td{
+            font-size: 20px;
+            background-color: rgb(246, 185, 128);
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .second-line td:hover {
+        transform: scale(1.2);
+        }
+        .third-line{
+            width: 550px;
+            height: 40px;
+        }
+        .third-line td{
+            font-size: 20px;
+            background-color: rgb(241, 133, 60);
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .third-line td:hover {
+        transform: scale(1.2);
+        }
+        .last-line {
+            width: 550px;
+            height: 40px;
+        }
+        .last-line td{
+            font-size: 20px;
+            background-color: rgb(243, 80, 83);
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .last-line td:hover {
+        transform: scale(1.2);
+        }
+    </style>
+
+    <div class="container">
+        <input type="text" placeholder="Введите текст" class="input">
+        <div class="unite">
+            <table class="table-F"></table>
+            <table class="numbers"></table>
+            <table class="first-line"></table>
+            <table class="second-line"></table>
+            <table class="third-line"></table>
+            <table class="last-line"></table>
+        </div>
+    </div>
+
+
+    <script>
+            let input = document.querySelector('.input');
+
+
+
+
+
+    //ряд F
+    let tableF = document.querySelector('.table-F');
+    let k = 1; 
+	for (let i = 0; i < 12; i++) {
+		let td = document.createElement('td');		
+		td.textContent = 'F'+k;
+		k++; 	
+        tableF.append(td);
+	}
+    esc = document.createElement('td');
+    esc.textContent = 'esc';
+    tableF.append(esc)
+    tableF.insertBefore(esc, tableF.firstChild)
+
+    //ряд с цифрами
+    let tableNumbers = document.querySelector('.numbers');
+    let m = 1; 
+	for (let i = 0; i < 9; i++) {
+		let td = document.createElement('td');		
+		td.textContent = m;
+		m++; 	
+        tableNumbers.append(td);
+	}
+    upper = document.createElement('td');
+    upper.textContent = 'ё';
+    tableNumbers.insertBefore(upper, tableNumbers.firstChild)
+
+    tdZero = document.createElement('td');
+    tdZero.textContent = '0';
+    tableNumbers.append(tdZero)
+
+    tdMinus = document.createElement('td');
+    tdMinus.textContent = '-';
+    tableNumbers.append(tdMinus)
+
+    tdPlus = document.createElement('td');
+    tdPlus.textContent = '+';
+    tableNumbers.append(tdPlus)
+
+    backSpace = document.createElement('td');
+    backSpace.textContent = 'esc';
+    tableNumbers.append(backSpace)
+    tableNumbers.append(backSpace)
+
+//первый ряд букв
+alphabet = 'qwertyuiop{}'.split('');
+alphabetLength = alphabet.length;
+l = 1;
+let firstLine = document.querySelector('.first-line');
+	for (let i = 0; i < alphabetLength; i++) {
+		let td = document.createElement('td');		
+		td.textContent = alphabet[i];
+		l++; 	
+        firstLine.append(td);
+	}
+    tab = document.createElement('td');
+    tab.textContent = 'tab';
+    firstLine.append(tab)
+    firstLine.insertBefore(tab, firstLine.firstChild)
+
+//второй ряд букв
+alphabet = 'asdfghjkl;#'.split('');
+alphabetLength = alphabet.length;
+a = 1;
+let secondLine = document.querySelector('.second-line');
+for (let i = 0; i < alphabetLength; i++) {
+		let td = document.createElement('td');		
+		td.textContent = alphabet[i];
+		a++; 	
+        secondLine.append(td);
+	}
+    capsLock = document.createElement('td');
+    capsLock.setAttribute("style","width:10px")
+    capsLock.textContent = 'caps lock';
+    secondLine.append(capsLock)
+    secondLine.insertBefore(capsLock, secondLine.firstChild)
+
+//третий ряд букв
+alphabet = 'zxcvbnm,.?'.split('');
+alphabetLength = alphabet.length;
+b =1;
+let thirdLine = document.querySelector('.third-line');
+for (let i = 0; i < alphabetLength; i++) {
+		let td = document.createElement('td');		
+		td.textContent = alphabet[i];
+		a++; 	
+        thirdLine.append(td);
+	}
+    shift = document.createElement('td');
+    shift.textContent = 'shift';
+    thirdLine.append(shift)
+    thirdLine.insertBefore(shift, thirdLine.firstChild)
+
+//последний ряд букв
+alphabet = 'ctr,fn, win,alt,s p a c e, gr, fn, ctrl'.split(',');
+alphabetLength = alphabet.length;
+c =1;
+let lastLine = document.querySelector('.last-line');
+
+for (let i = 0; i < alphabetLength; i++) {
+		let td = document.createElement('td');		
+		td.textContent = alphabet[i];
+		c++; 	
+        lastLine.append(td);
+	}
+    space = document.createElement('td');
+    space.textContent = 'space';
+    lastLine.append(space)
+    lastLine.append(space)
+
+
+
+
+
+// как поменять размер отдельной клетки
+// document.getElementsByTagName('td')[0].style.width = '2px';
+
+
+
+    </script>
+</body>
+</html>
