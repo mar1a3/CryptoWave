@@ -3,260 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1</title>
+    <title>№1,№2,№3,№4</title>
+    <!-- все задания в одном файле -->
 </head>
 <body>
     <style>
-        body{
-            background-color: black;
+        .arrow-left{
+            margin-left: 40px;
+            width: 70px;
+            transform: rotate(180deg);
+            cursor: pointer;
         }
-        .input{
+        .arrow-right{
+            margin-left: 80px;
+            width: 70px;
+            transform: rotate(360deg);
+            cursor: pointer;
+        }
+        .todayDate{
+            margin-left: 40px;
+        }
+        .calendar{
             margin-top: 100px;
-            margin-left: 300px;
-            padding: 5px 10px;
-            width: 400px;
-            height: 40px;
-            color:white;
+        }
+        .list{
+            width: 800px;
+            height: 100px;
+        }
+        .list li{
+            display: inline;
             font-size: 20px;
-            background-color: black;
-            border: 3px solid rgb(241, 133, 60);;
-            border-radius: 7px;
-        }
-        .unite{
-            margin-top: 50px;
-            margin-left: 250px;
-            width: 550px;
-            border: 2px solid #000000;
-            border-radius: 10px;
-        }
-        .table-F{
-            width: 550px;
-            height: 30px;
-        }
-        .table-F td{
-            text-align: center;
-            background-color: rgb(243, 80, 83);
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.25s;
-        }
-        .table-F td:hover {
-        transform: scale(1.2);
-        }
-        .numbers{
-            width: 550px;
-            height: 40px;
-        }
-        .numbers td{
-            text-align: center;
-            background-color: rgb(241, 133, 60);
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.25s;
-        }
-        .numbers td:hover {
-        transform: scale(1.2);
-        }
-        .first-line{
-            width: 550px;
-            height: 40px;
-        }
-        .first-line td{
-            font-size: 20px;
-            background-color: rgb(242, 219, 125);
-            text-align: center;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.25s;
-        }
-        .first-line td:hover {
-        transform: scale(1.2);
-        }
-        .second-line{
-            width: 550px;
-            height: 40px;
-        }
-        .second-line td{
-            font-size: 20px;
-            background-color: rgb(246, 185, 128);
-            text-align: center;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.25s;
-        }
-        .second-line td:hover {
-        transform: scale(1.2);
-        }
-        .third-line{
-            width: 550px;
-            height: 40px;
-        }
-        .third-line td{
-            font-size: 20px;
-            background-color: rgb(241, 133, 60);
-            text-align: center;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.25s;
-        }
-        .third-line td:hover {
-        transform: scale(1.2);
-        }
-        .last-line {
-            width: 550px;
-            height: 40px;
-        }
-        .last-line td{
-            font-size: 20px;
-            background-color: rgb(243, 80, 83);
-            text-align: center;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.25s;
-        }
-        .last-line td:hover {
-        transform: scale(1.2);
         }
     </style>
 
+
     <div class="container">
-        <input type="text" placeholder="Введите текст" class="input">
-        <div class="unite">
-            <table class="table-F"></table>
-            <table class="numbers"></table>
-            <table class="first-line"></table>
-            <table class="second-line"></table>
-            <table class="third-line"></table>
-            <table class="last-line"></table>
+        <div class="calendar">
+            <div class="arrows">
+                <img src="./jpg/arrowright.svg" alt="" class="arrow-left">
+                <img src="./jpg/arrowright.svg" alt="" class="arrow-right">
+            </div>
+            <h1 class="todayDate"></h1>
+            <ul class="list">
+
+            </ul>
         </div>
     </div>
-
-
+    
     <script>
-            let input = document.querySelector('.input');
+//переменные
+        let list = document.querySelector('.list')
+        let monthYear = document.querySelector('.todayDate')
+        let arrowLeft = document.querySelector('.arrow-left')
+        let arrowRight = document.querySelector('.arrow-right')
+
+let yeaR = 2023
+let montH = 8
+var days = []
 
 
 
+//вывод сегодняшнего месяца и года на русском
+        const today = new Date()
+        const f = new Intl.DateTimeFormat("ru-ru",{
+            dateStyle: "full",
+        })
 
+        const month = f.format(today).substr(10,7)+'ь'
+        const year = f.format(today).substr(19,17)
+        monthYear.append(month+ ' '+ year)
 
-    //ряд F
-    let tableF = document.querySelector('.table-F');
-    let k = 1; 
-	for (let i = 0; i < 12; i++) {
-		let td = document.createElement('td');		
-		td.textContent = 'F'+k;
-		k++; 	
-        tableF.append(td);
-	}
-    esc = document.createElement('td');
-    esc.textContent = 'esc';
-    tableF.append(esc)
-    tableF.insertBefore(esc, tableF.firstChild)
+        let arrowDate = 9
 
-    //ряд с цифрами
-    let tableNumbers = document.querySelector('.numbers');
-    let m = 1; 
-	for (let i = 0; i < 9; i++) {
-		let td = document.createElement('td');		
-		td.textContent = m;
-		m++; 	
-        tableNumbers.append(td);
-	}
-    upper = document.createElement('td');
-    upper.textContent = 'ё';
-    tableNumbers.insertBefore(upper, tableNumbers.firstChild)
+//нажатие на левую стрелку
+        arrowLeft.onclick = function(){
+        monthYear.innerHTML =''
+        montH-=1
 
-    tdZero = document.createElement('td');
-    tdZero.textContent = '0';
-    tableNumbers.append(tdZero)
+        var date = new Date(yeaR, montH, 1);
+        console.log(date)
+        let dateToday =JSON.stringify(date).substr(6,2);
+        console.log(dateToday)
+        while (date.getMonth() === montH) {
+            days.push(new Date(date));
+            date.setDate(date.getDate() + 1);
+    }
+//цикл определения дней в месяце
+    let daysLength = days.length;
+    console.log(daysLength)
+    
+    for(let i=1; i<daysLength;i++){
+        console.log(days[i])
+        let str = JSON.stringify(days[i]).substr(9,2);
+        let li = document.createElement('li');
+        li.innerText = str + ' '
+        list.append(li)
+//подсвечивается сегодняшнее число
+        // if(str == dateToday ){
+        //     li.style.color = 'red'
+        // }
+    }
+            arrowDate-=1
+            console.log(arrowDate)
+            var date = new Date(`"2012-0${arrowDate}-01"`);
+            var monthName = new Intl.DateTimeFormat("ru-ru", { month: "long" }).format;
+            var longName = monthName(date); // "July"
+            monthYear.append(longName+ ' '+ year)
+            console.log(longName)
+            if(arrowDate<=1){
+                arrowDate=13
+            }
 
-    tdMinus = document.createElement('td');
-    tdMinus.textContent = '-';
-    tableNumbers.append(tdMinus)
+        }
+//нажатие на правую стрелку
+        arrowRight.onclick = function(){
+            monthYear.innerHTML =''
 
-    tdPlus = document.createElement('td');
-    tdPlus.textContent = '+';
-    tableNumbers.append(tdPlus)
+            arrowDate+=1
+            console.log(arrowDate)
+            var date = new Date(`"2012-0${arrowDate}-01"`);
+            var monthName = new Intl.DateTimeFormat("ru-ru", { month: "long" }).format;
+            var longName = monthName(date); // "July"
+            monthYear.append(longName+ ' '+ year)
+            console.log(longName)
+            if(arrowDate >=12){
+                arrowDate = 0
+            }
+        }        
 
-    backSpace = document.createElement('td');
-    backSpace.textContent = 'esc';
-    tableNumbers.append(backSpace)
-    tableNumbers.append(backSpace)
-
-//первый ряд букв
-alphabet = 'qwertyuiop{}'.split('');
-alphabetLength = alphabet.length;
-l = 1;
-let firstLine = document.querySelector('.first-line');
-	for (let i = 0; i < alphabetLength; i++) {
-		let td = document.createElement('td');		
-		td.textContent = alphabet[i];
-		l++; 	
-        firstLine.append(td);
-	}
-    tab = document.createElement('td');
-    tab.textContent = 'tab';
-    firstLine.append(tab)
-    firstLine.insertBefore(tab, firstLine.firstChild)
-
-//второй ряд букв
-alphabet = 'asdfghjkl;#'.split('');
-alphabetLength = alphabet.length;
-a = 1;
-let secondLine = document.querySelector('.second-line');
-for (let i = 0; i < alphabetLength; i++) {
-		let td = document.createElement('td');		
-		td.textContent = alphabet[i];
-		a++; 	
-        secondLine.append(td);
-	}
-    capsLock = document.createElement('td');
-    capsLock.setAttribute("style","width:10px")
-    capsLock.textContent = 'caps lock';
-    secondLine.append(capsLock)
-    secondLine.insertBefore(capsLock, secondLine.firstChild)
-
-//третий ряд букв
-alphabet = 'zxcvbnm,.?'.split('');
-alphabetLength = alphabet.length;
-b =1;
-let thirdLine = document.querySelector('.third-line');
-for (let i = 0; i < alphabetLength; i++) {
-		let td = document.createElement('td');		
-		td.textContent = alphabet[i];
-		a++; 	
-        thirdLine.append(td);
-	}
-    shift = document.createElement('td');
-    shift.textContent = 'shift';
-    thirdLine.append(shift)
-    thirdLine.insertBefore(shift, thirdLine.firstChild)
-
-//последний ряд букв
-alphabet = 'ctr,fn, win,alt,s p a c e, gr, fn, ctrl'.split(',');
-alphabetLength = alphabet.length;
-c =1;
-let lastLine = document.querySelector('.last-line');
-
-for (let i = 0; i < alphabetLength; i++) {
-		let td = document.createElement('td');		
-		td.textContent = alphabet[i];
-		c++; 	
-        lastLine.append(td);
-	}
-    space = document.createElement('td');
-    space.textContent = 'space';
-    lastLine.append(space)
-    lastLine.append(space)
+//функция определения дат в месяце
 
 
 
+// function getDaysInMonth(month, year) {
 
+        var date = new Date(yeaR, montH, 1);
+        let dateToday =JSON.stringify(date).substr(6,2);
+        while (date.getMonth() === montH) {
+            days.push(new Date(date));
+            date.setDate(date.getDate() + 1);
+    }
+//цикл определения дней в месяце
+    let daysLength = days.length;
+    console.log(daysLength)
+    
+    for(let i=1; i<daysLength;i++){
+        let str = JSON.stringify(days[i]).substr(9,2);
+        let li = document.createElement('li');
+        li.innerText = str + ' '
+        list.append(li)
+//подсвечивается сегодняшнее число
+        if(str == dateToday ){
+            li.style.color = 'red'
+        }
+    }
 
-// как поменять размер отдельной клетки
-// document.getElementsByTagName('td')[0].style.width = '2px';
-
-
+        // return days;
+  
+// }
+// getDaysInMonth(monthInGetDays,2023)
 
     </script>
 </body>
