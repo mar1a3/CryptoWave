@@ -3,164 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>№1,№2,№3,№4</title>
-    <!-- все задания в одном файле -->
+    <title>№1</title>
 </head>
 <body>
-    <style>
-        .arrow-left{
-            margin-left: 40px;
-            width: 70px;
-            transform: rotate(180deg);
-            cursor: pointer;
-        }
-        .arrow-right{
-            margin-left: 80px;
-            width: 70px;
-            transform: rotate(360deg);
-            cursor: pointer;
-        }
-        .todayDate{
-            margin-left: 40px;
-        }
-        .calendar{
-            margin-top: 100px;
-        }
-        .list{
-            width: 800px;
-            height: 100px;
-        }
-        .list li{
-            display: inline;
-            font-size: 20px;
-        }
-    </style>
+    <div class="element" class="btn">
+        <form action="" class="btn">
+        <input type="text" placeholder="Введите название тега" class="input">
+        <button>Submit</button>
+    </form>
+    <p class="par"></p>
 
-
-    <div class="container">
-        <div class="calendar">
-            <div class="arrows">
-                <img src="./jpg/arrowright.svg" alt="" class="arrow-left">
-                <img src="./jpg/arrowright.svg" alt="" class="arrow-right">
-            </div>
-            <h1 class="todayDate"></h1>
-            <ul class="list">
-
-            </ul>
-        </div>
     </div>
-    
+
     <script>
-//переменные
-        let list = document.querySelector('.list')
-        let monthYear = document.querySelector('.todayDate')
-        let arrowLeft = document.querySelector('.arrow-left')
-        let arrowRight = document.querySelector('.arrow-right')
-
-let yeaR = 2023
-let montH = 8
-var days = []
+    const input = document.querySelector('.input');
+    const paragraph = document.querySelector('.par');
+    const submitBtn = document.querySelector('.btn');
 
 
-
-//вывод сегодняшнего месяца и года на русском
-        const today = new Date()
-        const f = new Intl.DateTimeFormat("ru-ru",{
-            dateStyle: "full",
-        })
-
-        const month = f.format(today).substr(10,7)+'ь'
-        const year = f.format(today).substr(19,17)
-        monthYear.append(month+ ' '+ year)
-
-        let arrowDate = 9
-
-//нажатие на левую стрелку
-        arrowLeft.onclick = function(){
-        monthYear.innerHTML =''
-        montH-=1
-
-        var date = new Date(yeaR, montH, 1);
-        console.log(date)
-        let dateToday =JSON.stringify(date).substr(6,2);
-        console.log(dateToday)
-        while (date.getMonth() === montH) {
-            days.push(new Date(date));
-            date.setDate(date.getDate() + 1);
+    function clickHandler(){
+        paragraph.innerHTML = '';
     }
-//цикл определения дней в месяце
-    let daysLength = days.length;
-    console.log(daysLength)
-    
-    for(let i=1; i<daysLength;i++){
-        console.log(days[i])
-        let str = JSON.stringify(days[i]).substr(9,2);
-        let li = document.createElement('li');
-        li.innerText = str + ' '
-        list.append(li)
-//подсвечивается сегодняшнее число
-        // if(str == dateToday ){
-        //     li.style.color = 'red'
-        // }
-    }
-            arrowDate-=1
-            console.log(arrowDate)
-            var date = new Date(`"2012-0${arrowDate}-01"`);
-            var monthName = new Intl.DateTimeFormat("ru-ru", { month: "long" }).format;
-            var longName = monthName(date); // "July"
-            monthYear.append(longName+ ' '+ year)
-            console.log(longName)
-            if(arrowDate<=1){
-                arrowDate=13
-            }
 
-        }
-//нажатие на правую стрелку
-        arrowRight.onclick = function(){
-            monthYear.innerHTML =''
-
-            arrowDate+=1
-            console.log(arrowDate)
-            var date = new Date(`"2012-0${arrowDate}-01"`);
-            var monthName = new Intl.DateTimeFormat("ru-ru", { month: "long" }).format;
-            var longName = monthName(date); // "July"
-            monthYear.append(longName+ ' '+ year)
-            console.log(longName)
-            if(arrowDate >=12){
-                arrowDate = 0
-            }
-        }        
-
-//функция определения дат в месяце
-
-
-
-// function getDaysInMonth(month, year) {
-
-        var date = new Date(yeaR, montH, 1);
-        let dateToday =JSON.stringify(date).substr(6,2);
-        while (date.getMonth() === montH) {
-            days.push(new Date(date));
-            date.setDate(date.getDate() + 1);
-    }
-//цикл определения дней в месяце
-    let daysLength = days.length;
-    console.log(daysLength)
-    
-    for(let i=1; i<daysLength;i++){
-        let str = JSON.stringify(days[i]).substr(9,2);
-        let li = document.createElement('li');
-        li.innerText = str + ' '
-        list.append(li)
-//подсвечивается сегодняшнее число
-        if(str == dateToday ){
-            li.style.color = 'red'
-        }
-    }
+    function submitHandler(e){
+        e.preventDefault();
   
-// }
-// getDaysInMonth(monthInGetDays,2023)
+    fetch('1.json')
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        appendData(data)
+        
+    })
+    .catch(function (err) {
+        console.log('error: ' + err);
+    });
+
+    function appendData(data){
+    const results = new Array();
+    for (index = 0; index < data.length; index++) {
+            if(data[index].tagNameUpdated == input.value){
+                results.push(data[index].meaning);
+            }
+        
+    }
+    if (results.length) {
+        const response = document.createElement('p');
+        response.innerHTML = JSON.stringify(results).replace(/[\[\]']+/g,'').replace(/["']/g,"");
+        paragraph.append(response)
+      } else {
+        const response = document.createElement('p');
+        response.innerHTML = 'Такого тега не существует, попробуйте еще раз';
+        paragraph.append(response)
+      }
+    }
+}
+submitBtn.addEventListener('submit', submitHandler);
+input.addEventListener('click',clickHandler);
 
     </script>
+    
+
 </body>
 </html>
