@@ -3,67 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>№1</title>
+    <title>№1,2,3 Гороскоп на JS</title>
+    <!-- к сожалению, парсер пришлось делать на питоне, тк
+    на js я не понимаю, как прокликать кнопки и собрать данные из всех
+    страниц (( -->
 </head>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 100px;
+        }
+        .input_section{
+            display: flex;
+        }
+        #input{
+            height: 30px;
+            width: 200px;
+            padding: 5px 5px;
+        }
+        .buttons{
+            display: none;
+            margin-top: 20px;
+            
+        }
+        .prediction{
+            width: 600px;
+            height: 200px;
+            text-align: justify;
+        }
+    </style>
 <body>
-    <div class="element" class="btn">
-        <form action="" class="btn">
-        <input type="text" placeholder="Введите название тега" class="input">
-        <button>Submit</button>
-    </form>
-    <p class="par"></p>
-
+    <div class="container">
+        <p>Вводите данные без нулей в начале :)</p>
+        <div class="input_section">
+        <input id="f-day" type="number" size="2" />.<input id="f-month" type="number" size="2" />
+        <input type="button" id="btn" value="Посчитать" />
     </div>
+    <div class="buttons">
+        <div>
+        <input type="radio" id="yesterday" name="drone" value="yesterday" />
+    <label for="yesterday">Вчера</label>
+</div>
+
+  <div>
+    <input type="radio" id="today" name="drone" value="today" checked/>
+    <label for="today">Сегодня</label>
+  </div>
+
+  <div>
+    <input type="radio" id="tomorrow" name="drone" value="tomorrow" />
+    <label for="tomorrow">Завтра</label>
+  </div>
+    </div>
+    <div class="zodiac_sign"></div>
+    <div class="prediction"></div>
+</div>
 
     <script>
-    const input = document.querySelector('.input');
-    const paragraph = document.querySelector('.par');
-    const submitBtn = document.querySelector('.btn');
+    const btn = document.getElementById('btn');
+    const buttons = document.querySelector('.buttons');
+    const horoscope = document.querySelector('.prediction');
+    const zodiacSign = document.querySelector('.zodiac_sign');
+    const yesterday = document.getElementById('yesterday');
+    const today = document.getElementById('today');
+    const tomorrow = document.getElementById('tomorrow');
+    let prediction;
 
+    //sign- перем-я для хранения знака зодиака
+    let sign = '';
+    //нельзя ли сделать по-другому опредение знака?
+    // можно ли создать массив из дат для знака, условно, 
+    //в промеждутке 23.07 — 23.08 и проверять,
+    // если ли в массиве дата, и если да, то находить нужный знак? 
 
-    function clickHandler(){
-        paragraph.innerHTML = '';
+    const signs = [
+    {name:'Козерог', m:1, d:20},
+    {name:'Водолей', m:2, d:20},
+    {name:'Рыбы',    m:3, d:20},
+    {name:'Овен',    m:4, d:20},
+    {name:'Телец',   m:5, d:20},
+    {name:'Близнецы',m:6, d:21},
+    {name:'Рак',     m:7, d:22},
+    {name:'Лев',     m:8, d:23},
+    {name:'Дева',    m:9, d:23},
+    {name:'Весы',    m:10,d:23},
+    {name:'Скорпион',m:11,d:22},
+    {name:'Стрелец', m:12,d:21},
+    {name:'Козерог', m:13,d:20}
+    ];
+    function calcSign() {
+    const d = document.getElementById('f-day').value;
+    const m = document.getElementById('f-month').value;
+    if (signs[m-1].d <= d) {
+        sign = signs[m].name;
+    } 
+    else 
+        sign =signs[m-1].name;
     }
 
-    function submitHandler(e){
-        e.preventDefault();
-  
+    function createEl(){
+        horoscope.innerHTML = '';
+        prediction = document.createElement('p');
+    }
+
+    function submitHandler(e) {
+    zodiacSign.innerHTML = '';
     fetch('1.json')
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
         appendData(data)
-        
+                
     })
     .catch(function (err) {
         console.log('error: ' + err);
     });
 
     function appendData(data){
-    const results = new Array();
     for (index = 0; index < data.length; index++) {
-            if(data[index].tagNameUpdated == input.value){
-                results.push(data[index].meaning);
+        const yesterdayPred = data[index].yesterday;
+        const tomorrowPred = data[index].tomorrow;
+        const todayPred = data[index].prediction;
+        function forToday(){
+                createEl();
+                prediction.innerHTML = todayPred;
+                horoscope.append(prediction);
+        }
+        calcSign();
+        if(data[index].zodiac == sign){
+            buttons.style.display = 'flex';
+            forToday();
+        //возможно,  кнопки лучше прокликать в цикле?
+            today.onclick = function(){
+                forToday();
+            }       
+            yesterday.onclick = function(){
+                createEl();
+                prediction.innerHTML = yesterdayPred;
+                horoscope.append(prediction);
             }
-        
-    }
-    if (results.length) {
-        const response = document.createElement('p');
-        response.innerHTML = JSON.stringify(results).replace(/[\[\]']+/g,'').replace(/["']/g,"");
-        paragraph.append(response)
-      } else {
-        const response = document.createElement('p');
-        response.innerHTML = 'Такого тега не существует, попробуйте еще раз';
-        paragraph.append(response)
-      }
-    }
+            tomorrow.onclick = function(){
+                createEl();
+                prediction.innerHTML = tomorrowPred;
+                horoscope.append(prediction);
+            }  
+            let zodiac = document.createElement('p');
+            zodiac.innerHTML = sign;
+            zodiacSign.append(zodiac)                   
+        }
 }
-submitBtn.addEventListener('submit', submitHandler);
-input.addEventListener('click',clickHandler);
+}
+}
 
-    </script>
-    
-
+    btn.addEventListener('click',submitHandler);
+</script>
 </body>
 </html>
