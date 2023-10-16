@@ -35,17 +35,17 @@
 <body>
     <div id="parent">
         <input id="elem">
-        <ul id="list"></ul>
     </div>
-    text text text text text
+    <ul>
+
+    </ul>
     
     <script>
     let state;
 
     const input = document.getElementById('elem');
-    const ul = document.getElementById('list');
-    
-    const li = document.querySelectorAll('li');
+    let list = document.querySelector('ul');
+
     const towns = [
         'belgorod',
         'baranovichi',
@@ -56,17 +56,20 @@
     ];
 
     function keyupHandler(){
+        list.innerHTML = '';
         state = input.value;
         checkIn();
     }
     
     function checkIn(){
     const substr = state;
-    for(let i=0; i<towns.length;i++){
-        if(towns[i].indexOf(substr) !== -1){
-            console.log(towns[i])
+    let res = towns.filter(function(elem){
+        if(elem.startsWith(substr)){
+            const li = document.createElement('li');
+            li.innerHTML = elem;
+            list.append(li);
         }
-    }
+    })
 }
     input.addEventListener('keyup',keyupHandler);
     </script>
