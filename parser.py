@@ -51,7 +51,6 @@ for sign in baseDiv:
             "zodiac": zodiacSign,
             "prediction":prediction,
             "yesterday":yesterdayPrediction,
-            "tomorrow": tomorrowPrediction
 
         }
     )
